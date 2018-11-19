@@ -5,16 +5,26 @@
     <meta charset="UTF-8">
     <title>SimulationView</title>
     <link rel="icon" href="AmazonLogo.ico" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/hover-min.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body style="margin:0px;padding:0px;overflow:hidden;">
+    <i class="fas fa-volume-up music-button hvr-grow" id="mute" style="display:none" onclick="stopMusic()"></i>
+    <i class="fas fa-volume-off music-button hvr-grow" id="play" style="display:none" onclick="playMusic()"></i>
+    <button type="button" class="btn-lg hvr hvr-grow-shadow startButton" id="start" style="display:block" onclick="startMusic()"><p class="textStyling">Start simulatie</p></button>
+    
     <script src="js/three.min.js"></script>
     <script src="js/Water.js"></script>
     <script src="js/MTLLoader.js"></script>
-    <script src="js/OBJLoader.js"></script>    
+    <script src="js/OBJLoader.js"></script>
     <script src="js/OrbitControls.js"></script>
     <script src="js/CameraAnimateScene.js"></script>
     <script src="js/WaterRender.js"></script>
     <script src="js/Skybox.js"></script>
+    <script src="js/Music.js"></script>
     <script src="js/ParseCommand.js"></script>
     <script src="js/ObjLoaderFunction.js"></script>
     <script src="js/Platform.js"></script>

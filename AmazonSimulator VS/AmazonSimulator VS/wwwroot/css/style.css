@@ -1,0 +1,24 @@
+﻿.music-button {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-size: 80px;
+}
+
+.startButton {
+    color:white;
+    background-color:darkgray;
+    border-width: 2px;
+    height: 10em;
+    width: 15em;
+    position: absolute;
+    z-index: 1000;
+    top: 40%;
+    left: 43%;
+}
+
+.textStyling {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 30px;
+}
+
