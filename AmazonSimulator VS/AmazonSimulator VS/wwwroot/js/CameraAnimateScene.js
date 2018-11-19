@@ -2,8 +2,10 @@
     //declare variables
     var camera, scene, renderer;
     var cameraControls;
-    var water, ship;
+    var water, ship, lhLight;
     var worldObjects = {};
+    var lighthelper, rotWorldMatrix;
+    var x_p = 0;
 
     function init() {
         //create camera view, scene and renderer
@@ -24,15 +26,19 @@
         //store water and the boat in another variable, so that it can be used outside of the init function
         water = WaterRender();
         ship = Boat();
-
+        lhLight = lighthouseLight();
         //add the objects and geometries to the scene
         scene.add(water);
         scene.add(ship);
         scene.add(Skybox());
         scene.add(Platform());
         scene.add(Barrels());
-        scene.add(Track())
+        scene.add(Track());
+        scene.add(lighthouse());
         scene.add(Light());
+        scene.add(lhLight);
+        spotLightHelper = new THREE.SpotLightHelper(lhLight);
+        scene.add(spotLightHelper);
     }
 
     function onWindowResize() {
@@ -43,6 +49,10 @@
 
     function animate() {
         requestAnimationFrame(animate);
+        spotLightHelper.update();
+        x_p += 1;
+        lhLight.target.position.set(x_p, 0, x_p);
+        lhLight.target.updateMatrixWorld();
         cameraControls.update();
         renderer.render(scene, camera);
         render();

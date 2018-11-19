@@ -2,9 +2,7 @@
 
 function startMusic() {
     var x = document.getElementById("start");
-    console.log(x);
     var y = document.getElementById("mute");
-    console.log(y);
 
     if (x.style.display === "block") {
         x.style.display = "none";
