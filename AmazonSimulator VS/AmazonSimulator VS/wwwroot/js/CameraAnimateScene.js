@@ -3,8 +3,8 @@
     var camera, scene, renderer;
     var cameraControls;
     var water, ship, lhLight;
+    var boolTurn = false;
     var worldObjects = {};
-    var lighthelper, rotWorldMatrix;
     var x_p = 0;
 
     function init() {
@@ -18,6 +18,9 @@
         scene = new THREE.Scene();
 
         renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
+        renderer.shadowMapSoft = true;
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight + 5);
         document.body.appendChild(renderer.domElement);
@@ -29,16 +32,20 @@
         lhLight = lighthouseLight();
         //add the objects and geometries to the scene
         scene.add(water);
+        scene.add(lhLight);
+        scene.add(Light());
         scene.add(ship);
         scene.add(Skybox());
         scene.add(Platform());
+        console.log(Barrels());
+        console.log(Track());
         scene.add(Barrels());
         scene.add(Track());
         scene.add(lighthouse());
-        scene.add(Light());
-        scene.add(lhLight);
         spotLightHelper = new THREE.SpotLightHelper(lhLight);
         scene.add(spotLightHelper);
+        var helper = new THREE.CameraHelper(lhLight.shadow.camera);
+        scene.add(helper);
     }
 
     function onWindowResize() {
@@ -50,7 +57,18 @@
     function animate() {
         requestAnimationFrame(animate);
         spotLightHelper.update();
-        x_p += 1;
+        if (x_p < 300 && boolTurn === false) {
+            x_p += 1;
+            if (x_p === 100) {
+                boolTurn = true;
+            }
+        }
+        else if (boolTurn === true) {
+            x_p -= 0.5;
+            if (x_p === -300) {
+                boolTurn = false;
+            }
+        }
         lhLight.target.position.set(x_p, 0, x_p);
         lhLight.target.updateMatrixWorld();
         cameraControls.update();

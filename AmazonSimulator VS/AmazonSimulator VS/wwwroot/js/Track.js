@@ -3,7 +3,7 @@ function Track(){
     var track = new THREE.Group();
     var tempZ = 55;
     var trackGeometryHor = new THREE.PlaneGeometry( 5, 103, 32 );
-    var trackMaterial = new THREE.MeshBasicMaterial( {color: 0x282B2A, side: THREE.DoubleSide} );
+    var trackMaterial = new THREE.MeshLambertMaterial( {color: 0xFFFFFF, side: THREE.DoubleSide} );
     var planeHor1 = new THREE.Mesh( trackGeometryHor, trackMaterial );
     var planeHor2 = new THREE.Mesh( trackGeometryHor, trackMaterial );
     var planeVer = [];
@@ -21,6 +21,7 @@ function Track(){
         planeVer[i].position.set(-14, 3.07, tempZ);
         track.add(planeVer[i]);
         tempZ -= 20;
-        }
+    }
+    track.traverse(function (child) { child.receiveShadow = true; });
     return track;
 }

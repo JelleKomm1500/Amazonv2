@@ -6,7 +6,9 @@ function lighthouse() {
         mesh.scale.set(2, 2, 2);
         mesh.position.set(12, 3.5, 74.0);
         mesh.rotation.y = Math.PI / 2;
+        mesh.castShadow = true;
+        mesh.receiveShadow = true;
         lighthouseGroup.add(mesh);
-    })
+    });
     return lighthouseGroup;
 }
