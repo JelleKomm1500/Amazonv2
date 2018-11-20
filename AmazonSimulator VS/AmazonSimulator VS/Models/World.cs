@@ -6,18 +6,48 @@ using Controllers;
 namespace Models {
     public class World : IObservable<Command>, IUpdatable
     {
-        private List<Robot> worldObjects = new List<Robot>();
+        private List<Object> worldObjects = new List<Object>();
         private List<IObserver<Command>> observers = new List<IObserver<Command>>();
         
         public World() {
-            Robot r = CreateRobot(0,0,0);
+            Robot r = CreateRobot(0, 0, 0);
             r.Move(4.6, 0, 13);
+
+            Robot2 r2 = CreateRobot2(0, 0, 0);
+            r2.Move(10, 5, 20);
+
+            Boat b = CreateBoat(0.0,0.10,-62.0);
+            //b.Move(10, 20, 30);
+
+            LightHouse l = CreateLightHouse(12, 3.5, 74.0);
+            //l.Move(0, 50, 50);
         }
 
         private Robot CreateRobot(double x, double y, double z) {
             Robot r = new Robot(x,y,z,0,0,0);
             worldObjects.Add(r);
             return r;
+        }
+
+        private Robot2 CreateRobot2(double x, double y, double z)
+        {
+            Robot2 r2 = new Robot2(x, y, z, 0, 0, 0);
+            worldObjects.Add(r2);
+            return r2;
+        }
+
+        private Boat CreateBoat(double x, double y, double z)
+        {
+            Boat b = new Boat(x, y, z, 0, 0, 0);
+            worldObjects.Add(b);
+            return b;
+        }
+
+        private LightHouse CreateLightHouse(double x, double y, double z)
+        {
+            LightHouse l = new LightHouse(x, y, z, 0, 0, 0);
+            worldObjects.Add(l);
+            return l;
         }
 
         public IDisposable Subscribe(IObserver<Command> observer)
@@ -37,7 +67,7 @@ namespace Models {
         }
 
         private void SendCreationCommandsToObserver(IObserver<Command> obs) {
-            foreach(Robot m3d in worldObjects) {
+            foreach(Object m3d in worldObjects) {
                 obs.OnNext(new UpdateModel3DCommand(m3d));
             }
         }
@@ -45,7 +75,7 @@ namespace Models {
         public bool Update(int tick)
         {
             for(int i = 0; i < worldObjects.Count; i++) {
-                Robot u = worldObjects[i];
+                Object u = worldObjects[i];
 
                 if(u is IUpdatable) {
                     bool needsCommand = ((IUpdatable)u).Update(tick);

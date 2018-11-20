@@ -25,16 +25,16 @@
         window.addEventListener('resize', onWindowResize, false);
         //store water and the boat in another variable, so that it can be used outside of the init function
         water = WaterRender();
-        ship = Boat();
+        //ship = Boat();
         lhLight = lighthouseLight();
         //add the objects and geometries to the scene
         scene.add(water);
-        scene.add(ship);
+        //scene.add(ship);
         scene.add(Skybox());
         scene.add(Platform());
         scene.add(Barrels());
         scene.add(Track());
-        scene.add(lighthouse());
+        //scene.add(lighthouse());
         scene.add(Light());
         scene.add(lhLight);
         spotLightHelper = new THREE.SpotLightHelper(lhLight);
@@ -48,13 +48,13 @@
     }
 
     function animate() {
+        renderer.render(scene, camera);
         requestAnimationFrame(animate);
         spotLightHelper.update();
         x_p += 1;
         lhLight.target.position.set(x_p, 0, x_p);
         lhLight.target.updateMatrixWorld();
         cameraControls.update();
-        renderer.render(scene, camera);
         render();
     }
     //render function to animate the water shader, also cause off huge gpu dependency
@@ -67,34 +67,38 @@
     exampleSocket = new WebSocket("ws://" + window.location.hostname + ":" + window.location.port + "/connect_client");
     exampleSocket.onmessage = function (event) {
         var command = parseCommand(event.data);
+        var group = new THREE.Group();
 
-        if (command.command == "update") {
+        if (command.command === "update") {
             if (Object.keys(worldObjects).indexOf(command.parameters.guid) < 0) {
-                if (command.parameters.type == "robot") {
-                    var geometry = new THREE.BoxGeometry(0.9, 0.3, 0.9);
-                    var cubeMaterials = [
-                        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("textures/robot_side.png"), side: THREE.DoubleSide }), //LEFT
-                        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("textures/robot_side.png"), side: THREE.DoubleSide }), //RIGHT
-                        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("textures/robot_top.png"), side: THREE.DoubleSide }), //TOP
-                        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("textures/robot_bottom.png"), side: THREE.DoubleSide }), //BOTTOM
-                        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("textures/robot_front.png"), side: THREE.DoubleSide }), //FRONT
-                        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("textures/robot_front.png"), side: THREE.DoubleSide }), //BACK
-                    ];
-                    var material = new THREE.MeshFaceMaterial(cubeMaterials);
-                    var robot = new THREE.Mesh(geometry, material);
-                    robot.position.y = 0.15;
-                    robot.scale.x = 5;
-                    robot.scale.y = 5;
-                    robot.scale.z = 5;
 
+                if (command.parameters.type === "robot") {
+                    
+                    group.add(Robot());
 
-                    var group = new THREE.Group();
-                    group.add(robot);
-
-                    scene.add(group);
                     worldObjects[command.parameters.guid] = group;
                 }
+
+                else if (command.parameters.type === "boat") {
+                    group.add(Boat());
+
+                    worldObjects[command.parameters.guid] = group;
+                    render();
+                }
+                else if (command.parameters.type === "lighthouse") {
+                    group.add(Lighthouse());
+
+                    worldObjects[command.parameters.guid] = group;
+                }
+                else if (command.parameters.type === "robot2") {
+                    group.add(Robot2());
+
+                    worldObjects[command.parameters.guid] = group;
+                }
+
+                scene.add(group);
             }
+
 
             var object = worldObjects[command.parameters.guid];
 
@@ -102,11 +106,9 @@
             object.position.y = command.parameters.y;
             object.position.z = command.parameters.z;
 
-            object.rotation.x = command.parameters.rotationX;
-            object.rotation.y = command.parameters.rotationY;
-            object.rotation.z = command.parameters.rotationZ;
         }
     }
     init();
     animate();
 }
+   

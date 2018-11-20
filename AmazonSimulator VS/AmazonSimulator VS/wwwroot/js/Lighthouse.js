@@ -1,5 +1,5 @@
 ﻿//Load boat object and places it on the map
-function lighthouse() {
+function Lighthouse() {
     var lighthouseGroup = new THREE.Group();
 
     LoadOBJModel("textures/objects/lighthouse/", "Lighthouse.obj", "textures/objects/lighthouse/", "Lighthouse.mtl", (mesh) => {
@@ -7,6 +7,7 @@ function lighthouse() {
         mesh.position.set(12, 3.5, 74.0);
         mesh.rotation.y = Math.PI / 2;
         lighthouseGroup.add(mesh);
-    })
+    });
+
     return lighthouseGroup;
 }

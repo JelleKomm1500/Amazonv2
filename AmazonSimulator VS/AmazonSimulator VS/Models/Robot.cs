@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace Models {
-    public class Robot : IUpdatable {
+namespace Models
+{
+    public class Robot : IUpdatable
+    {
         private double _x = 0;
         private double _y = 0;
         private double _z = 0;
