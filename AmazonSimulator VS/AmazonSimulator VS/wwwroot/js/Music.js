@@ -8,7 +8,13 @@ function startMusic() {
         x.style.display = "none";
         y.style.display = "block";
     }
+
+    audio.addEventListener('ended', function () {
+        this.currentTime = 0;
+        this.play();
+    }, false);
     audio.play();
+    audio.volume = 0.3;
 }
 
 function playMusic() {
@@ -23,8 +29,12 @@ function playMusic() {
         y.style.display = "block";
     }
 
+    audio.addEventListener('ended', function () {
+        this.currentTime = 0;
+        this.play();
+    }, false);
     audio.play();
-
+    audio.volume = 0.3;
 }
 
 function stopMusic() {

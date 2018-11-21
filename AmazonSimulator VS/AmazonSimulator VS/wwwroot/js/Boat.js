@@ -1,6 +1,6 @@
 //Load boat object and places it on the map
-function Boat(){
-    var boatGroup = new THREE.Group();
+function Boat() {
+    var boat = new THREE.Group();
 
     LoadOBJModel("textures/objects/boat/", "boat.obj", "textures/objects/boat/", "boat.mtl", (mesh) => {
         mesh.scale.set(0.06, 0.06, 0.06);
@@ -8,7 +8,7 @@ function Boat(){
         mesh.rotation.y = Math.PI / 2;
         mesh.receiveShadow = true;
         mesh.castShadow = true;
-        boatGroup.add(mesh);
+        boat.add(mesh);
     });
-    return boatGroup;
-}
+    return boat;
+}   

@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\SuverNuver\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\SuverNuver\\.nuget\\packages",
+      "C:\\Users\\Jelle\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Jelle\\.nuget\\packages",
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
     ]
   }

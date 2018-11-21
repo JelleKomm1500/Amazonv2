@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace Models
-{
-    public class Robot : IUpdatable
-    {
+namespace Models {
+    public class LightHouse : IUpdatable {
         private double _x = 0;
         private double _y = 0;
         private double _z = 0;
@@ -25,8 +23,8 @@ namespace Models
 
         public bool needsUpdate = true;
 
-        public Robot(double x, double y, double z, double rotationX, double rotationY, double rotationZ) {
-            this.type = "robot";
+        public LightHouse(double x, double y, double z, double rotationX, double rotationY, double rotationZ) {
+            this.type = "lighthouse";
             this.guid = Guid.NewGuid();
 
             this._x = x;

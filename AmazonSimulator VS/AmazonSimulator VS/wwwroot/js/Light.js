@@ -1,6 +1,6 @@
 //adds ambient light
 function Light(){
-    var light = new THREE.AmbientLight(0xffffff);
+    var light = new THREE.AmbientLight(0x404040);
     light.intensity = .5;
 
     return light;
