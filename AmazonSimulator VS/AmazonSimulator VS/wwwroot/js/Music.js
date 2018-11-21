@@ -1,4 +1,4 @@
-﻿var audio = new Audio("music/Stardew Valley OST - Summer (Natures Crescendo).mp3");
+﻿var audio = new Audio("music/AmbientSound.mp3");
 
 function startMusic() {
     var x = document.getElementById("start");

@@ -17,6 +17,6 @@ function WaterRender(){
         }
     );
     water.rotation.x = - Math.PI / 2;
-
+    water.receiveShadow = true;
     return water;
 }
