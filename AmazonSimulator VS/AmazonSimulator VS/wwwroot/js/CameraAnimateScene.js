@@ -61,7 +61,6 @@
     }
 
     function animate() {
-        renderer.render(scene, camera);
         requestAnimationFrame(animate);
         spotLightHelper.update();
         if (x_p < 300 && boolTurn === false) {
