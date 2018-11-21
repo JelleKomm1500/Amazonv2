@@ -6,9 +6,9 @@ function Platform(){
         mesh.position.set(-20.0, -15.0, 5.0);
         mesh.rotation.x = Math.PI / -2;
         mesh.rotation.z = Math.PI / 2;
-        mesh.children[0].material = new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture("textures/objects/platform/wood5.jpg") });
-        mesh.receiveShadow = true;
+        mesh.children[0].material = new THREE.MeshLambertMaterial({ map: THREE.ImageUtils.loadTexture("textures/objects/platform/wood5.jpg") });
         platformGroup.add(mesh);
     });
+    platformGroup.receiveShadow = true;
     return platformGroup;
 }

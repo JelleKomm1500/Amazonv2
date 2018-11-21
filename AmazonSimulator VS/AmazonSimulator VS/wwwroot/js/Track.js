@@ -22,6 +22,7 @@ function Track(){
         track.add(planeVer[i]);
         tempZ -= 20;
     }
+    track.receiveShadow = true;
     track.traverse(function (child) { child.receiveShadow = true; });
     return track;
 }

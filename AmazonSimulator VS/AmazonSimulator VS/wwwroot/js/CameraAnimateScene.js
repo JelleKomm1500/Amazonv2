@@ -20,9 +20,9 @@
         renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.shadowMap.enabled = true;
         renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
-        renderer.shadowMapSoft = true;
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight + 5);
+
         document.body.appendChild(renderer.domElement);
 
         window.addEventListener('resize', onWindowResize, false);
@@ -32,16 +32,28 @@
         lhLight = lighthouseLight();
         //add the objects and geometries to the scene
         scene.add(water);
-        scene.add(lhLight);
         scene.add(Light());
         scene.add(ship);
         scene.add(Skybox());
         scene.add(Platform());
+        //var geometry = new THREE.BoxGeometry(1, 1, 1);
+        //material = new THREE.MeshPhongMaterial({
+        //    color: 0xff0000,
+        //});
+
+        //mesh = new THREE.Mesh(geometry, material);
+        //mesh.castShadow = true;
+        //mesh.position.set(0, 10, 0);
+        //mesh.scale.set(10, 10, 10);
+        //scene.add(mesh);
+        console.log(ship);
         console.log(Barrels());
-        console.log(Track());
+        console.log(lighthouseLight());
+        console.log(Platform());
         scene.add(Barrels());
         scene.add(Track());
         scene.add(lighthouse());
+        scene.add(lhLight);
         spotLightHelper = new THREE.SpotLightHelper(lhLight);
         scene.add(spotLightHelper);
         var helper = new THREE.CameraHelper(lhLight.shadow.camera);
@@ -64,8 +76,8 @@
             }
         }
         else if (boolTurn === true) {
-            x_p -= 0.5;
-            if (x_p === -300) {
+            x_p -= 1;
+            if (x_p === -100) {
                 boolTurn = false;
             }
         }
