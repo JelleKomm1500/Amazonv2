@@ -5,27 +5,17 @@ using Newtonsoft.Json;
 
 namespace Models
 {
-    public class Boat : IUpdatable
+    public class Boat : Model3D, IUpdatable
     {
-        private double _x = 0;
-        private double _y = 0;
-        private double _z = 0;
-        private double _rX = 0;
-        private double _rY = 0;
-        private double _rZ = 0;
+        //private List<Chest> _chests;
+        //public List<Chest> chests { get { return _chests; } }
 
-        public string type { get; }
-        public Guid guid { get; }
-        public double x { get { return _x; } }
-        public double y { get { return _y; } }
-        public double z { get { return _z; } }
-        public double rotationX { get { return _rX; } }
-        public double rotationY { get { return _rY; } }
-        public double rotationZ { get { return _rZ; } }
+        private List<BoatTask> tasks = new List<BoatTask>();
 
-        public bool needsUpdate = true;
+        private bool _loadable;
+        public bool loadable { get { return _loadable; } }
 
-        public Boat(double x, double y, double z, double rotationX, double rotationY, double rotationZ)
+        public Boat(decimal x, decimal y, decimal z, decimal rotationX, decimal rotationY, decimal rotationZ)
         {
             this.type = "boat";
             this.guid = Guid.NewGuid();
@@ -37,35 +27,110 @@ namespace Models
             this._rX = rotationX;
             this._rY = rotationY;
             this._rZ = rotationZ;
+
+            //this._chests = new List<Chest>();
+            this._loadable = false;
         }
 
-        public virtual void Move(double x, double y, double z)
+        public Boat(Point point)
         {
-            this._x = x;
-            this._y = y;
-            this._z = z;
+            this.type = "boat";
+            this.guid = Guid.NewGuid();
 
-            needsUpdate = true;
+            this._x = point.x;
+            this._y = point.y;
+            this._z = point.z;
+
+            //this._chests = new List<Chest>();
+            this._loadable = false;
         }
+        //public void AddChest(Chest chest)
+        //{
+        //    _chests.Add(chest);
+        //    chest.AssignPoint(null);
+        //    chest.Move(this.x, this.y + 0.2m, this.z);
+        //}
 
-        public virtual void Rotate(double rotationX, double rotationY, double rotationZ)
+        //public void RemoveChest(Robot r)
+        //{
+        //    if (_chests.Last() != null && r.chest == null)
+        //    {
+        //        r.AssignChest(_chests.Last());
+        //        _chests.Remove(_chests.Last());
+        //    }
+        //}
+        //public void RemoveChest(Point point)
+        //{
+        //    if (_chests.Last() != null && point.chest == null)
+        //    {
+        //        point.AddChest(_chests.Last());
+        //        _chests.Remove(_chests.Last());
+        //    }
+        //}
+        public void SwitchLoadable()
         {
-            this._rX = rotationX;
-            this._rY = rotationY;
-            this._rZ = rotationZ;
-
-            needsUpdate = true;
-        }
-
-        public virtual bool Update(int tick)
-        {
-            if (needsUpdate)
+            if (loadable == false)
             {
-                needsUpdate = false;
-                return true;
+                this._loadable = true;
             }
-            return false;
+            else
+            {
+                this._loadable = true;
+            }
+        }
+        public void Move(Point point)
+        {
+            if (this.x < point.x)
+            {
+                this.Move(this.x + 0.2m, this.y, this.z);
+            }
+            else if (this.x > point.x)
+            {
+                this.Move(this.x - 0.2m, this.y, this.z);
+            }
+
+            if (this.z < point.z)
+            {
+                this.Move(this.x, this.y, this.z + 0.2m);
+            }
+            else if (this.z > point.z)
+            {
+                this.Move(this.x, this.y, this.z - 0.2m);
+            }
+
+            //if (_chests != null)
+            //{
+            //    foreach (Chest chest in _chests)
+            //    {
+            //        chest.Move(this.x, this.y + 0.4m, this.z);
+            //    }
+            //}
         }
 
+        public void AddTask(BoatTask task)
+        {
+            tasks.Add(task);
+        }
+
+        public override bool Update(int tick)
+        {
+            if (tasks != null && tasks.Any())
+            {
+                if (tasks.First().TaskComplete(this))
+                {
+                    tasks.RemoveAt(0);
+
+                    if (tasks.Count == 0)
+                    {
+                        tasks = null;
+                    }
+                }
+                if (tasks != null)
+                {
+                    tasks.First().StartTask(this);
+                }
+            }
+            return base.Update(tick);
+        }
     }
 }
