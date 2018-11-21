@@ -8,6 +8,7 @@ function Light(){
 
 function lighthouseLight() {
     var light = new THREE.SpotLight(0xFFAA55);
+    var pLight;
 
     light.position.set(12, 36, 74.0);
     light.distance = 500;
@@ -23,5 +24,20 @@ function lighthouseLight() {
     light.shadow.camera.near = 0.5;       // default
     light.shadow.camera.far = 150;      // default
 
-    return light;
+    pLight = lhPointLight(light.position.x, light.position.y, light.position.z);
+
+    return [light, pLight];
+}
+
+function lhPointLight(x, y, z) {
+    var sphere = new THREE.SphereBufferGeometry(0.25, 16, 8);
+
+    pLight = new THREE.PointLight(0xFFAA55);
+    pLight.position.set(x, y, z);
+    pLight.distance = 10;
+    pLight.angle = 1;
+    pLight.intensity = 10;
+    pLight.add(new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0xffcb6b })));
+
+    return pLight;
 }

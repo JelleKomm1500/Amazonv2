@@ -122,6 +122,7 @@ namespace Models
             worldObjects.Add(r);
             return r;
         }
+
         public IDisposable Subscribe(IObserver<Command> observer)
         {
             if (!observers.Contains(observer))

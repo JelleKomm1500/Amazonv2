@@ -2,7 +2,10 @@
     //declare variables
     var camera, scene, renderer;
     var cameraControls;
-    var water, ship, lhLight;
+    var water, ship;
+    var lights = lighthouseLight();
+    var spotLight = lights[0];
+    var pointLight = lights[1];
     var boolTurn = false;
     var worldObjects = {};
     var x_p = 0;
@@ -28,7 +31,6 @@
         //store water and the boat in another variable, so that it can be used outside of the init function
         water = WaterRender();
         //ship = Boat();
-        lhLight = lighthouseLight();
         //add the objects and geometries to the scene
         scene.add(water);
         //scene.add(ship);
@@ -47,11 +49,15 @@
         scene.add(Track());
         //scene.add(lighthouse());
         scene.add(Light());
-        scene.add(lhLight);
-        spotLightHelper = new THREE.SpotLightHelper(lhLight);
-        scene.add(spotLightHelper);
-        var helper = new THREE.CameraHelper(lhLight.shadow.camera);
-        scene.add(helper);
+        scene.add(spotLight);
+        scene.add(pointLight);
+        //spotLightHelper = new THREE.SpotLightHelper(spotLight);
+        //scene.add(spotLightHelper);
+        //var helper = new THREE.CameraHelper(spotLight.shadow.camera);
+        //scene.add(helper);
+        var sphereSize = 1;
+        var pointLightHelper = new THREE.PointLightHelper(pointLight, sphereSize, 0xFFAA55);
+        scene.add(pointLightHelper);
     }
 
     function onWindowResize() {
@@ -62,7 +68,7 @@
 
     function animate() {
         requestAnimationFrame(animate);
-        spotLightHelper.update();
+        //spotLightHelper.update();
         if (x_p < 300 && boolTurn === false) {
             x_p += 1;
             if (x_p === 100) {
@@ -75,8 +81,8 @@
                 boolTurn = false;
             }
         }
-        lhLight.target.position.set(x_p, 0, x_p);
-        lhLight.target.updateMatrixWorld();
+        spotLight.target.position.set(x_p, 0, x_p);
+        spotLight.target.updateMatrixWorld();
         cameraControls.update();
         render();
     }

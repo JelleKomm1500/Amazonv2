@@ -14,7 +14,7 @@ function startMusic() {
         this.play();
     }, false);
     audio.play();
-    audio.volume = 0.3;
+    audio.volume = 0.1;
 }
 
 function playMusic() {
@@ -34,7 +34,7 @@ function playMusic() {
         this.play();
     }, false);
     audio.play();
-    audio.volume = 0.3;
+    audio.volume = 0.1;
 }
 
 function stopMusic() {
