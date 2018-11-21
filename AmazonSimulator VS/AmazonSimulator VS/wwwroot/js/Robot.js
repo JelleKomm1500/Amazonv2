@@ -11,6 +11,8 @@
     var material = new THREE.MeshFaceMaterial(cubeMaterials);
     var robot = new THREE.Mesh(geometry, material);
     robot.position.y = 0.15;
+    robot.scale.set(5, 5, 5);
+
 
     return robot;
 

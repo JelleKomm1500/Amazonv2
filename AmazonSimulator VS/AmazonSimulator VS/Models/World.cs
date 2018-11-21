@@ -11,10 +11,10 @@ namespace Models {
         
         public World() {
             Robot r = CreateRobot(0, 0, 0);
-            r.Move(4.6, 0, 13);
+            r.Move(4.6, 3.8, 13);
 
-            Robot2 r2 = CreateRobot2(0, 0, 0);
-            r2.Move(10, 5, 20);
+            Barrels ba = CreateBarrels(0, 0, 0);
+            ba.Move(10, 5, 20);
 
             Boat b = CreateBoat(0.0,0.10,-62.0);
             //b.Move(10, 20, 30);
@@ -29,11 +29,11 @@ namespace Models {
             return r;
         }
 
-        private Robot2 CreateRobot2(double x, double y, double z)
+        private Barrels CreateBarrels(double x, double y, double z)
         {
-            Robot2 r2 = new Robot2(x, y, z, 0, 0, 0);
-            worldObjects.Add(r2);
-            return r2;
+            Barrels ba = new Barrels(x, y, z, 0, 0, 0);
+            worldObjects.Add(ba);
+            return ba;
         }
 
         private Boat CreateBoat(double x, double y, double z)

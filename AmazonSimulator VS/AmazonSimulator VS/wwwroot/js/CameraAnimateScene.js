@@ -32,7 +32,7 @@
         //scene.add(ship);
         scene.add(Skybox());
         scene.add(Platform());
-        scene.add(Barrels());
+        //scene.add(Barrels());
         scene.add(Track());
         //scene.add(lighthouse());
         scene.add(Light());
@@ -90,8 +90,8 @@
 
                     worldObjects[command.parameters.guid] = group;
                 }
-                else if (command.parameters.type === "robot2") {
-                    group.add(Robot2());
+                else if (command.parameters.type === "barrels") {
+                    group.add(Barrels());
 
                     worldObjects[command.parameters.guid] = group;
                 }
