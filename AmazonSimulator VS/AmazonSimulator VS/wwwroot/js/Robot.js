@@ -6,7 +6,7 @@
         new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("textures/robot_top.png"), side: THREE.DoubleSide }), //TOP
         new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("textures/robot_bottom.png"), side: THREE.DoubleSide }), //BOTTOM
         new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("textures/robot_front.png"), side: THREE.DoubleSide }), //FRONT
-        new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("textures/robot_front.png"), side: THREE.DoubleSide }), //BACK
+        new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("textures/robot_front.png"), side: THREE.DoubleSide }) //BACK
     ];
     var material = new THREE.MeshFaceMaterial(cubeMaterials);
     var robot = new THREE.Mesh(geometry, material);

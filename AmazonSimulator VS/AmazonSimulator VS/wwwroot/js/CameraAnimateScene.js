@@ -73,7 +73,7 @@
             if (Object.keys(worldObjects).indexOf(command.parameters.guid) < 0) {
 
                 if (command.parameters.type === "robot") {
-                    
+
                     group.add(Robot());
 
                     worldObjects[command.parameters.guid] = group;
@@ -107,8 +107,8 @@
             object.position.z = command.parameters.z;
 
         }
-    }
+    };
     init();
     animate();
-}
+};
    
