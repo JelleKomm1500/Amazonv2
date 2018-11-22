@@ -48,7 +48,7 @@ namespace Models
         {
             _chests.Add(chest);
             chest.AssignPoint(null);
-            chest.Move(this.x, this.y + 0.5m, this.z);
+            chest.Move(this.x, this.y + 0.2m, this.z);
         }
 
         public void RemoveChest(Robot r)

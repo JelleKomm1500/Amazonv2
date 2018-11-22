@@ -1,7 +1,7 @@
 //adds ambient light
 function Light(){
     var light = new THREE.AmbientLight(0x404040);
-    light.intensity = 1;
+    light.intensity = 4;
 
     return light;
 }
@@ -30,8 +30,6 @@ function lighthouseLight() {
 }
 
 function lhPointLight(x, y, z) {
-    var sphere = new THREE.SphereBufferGeometry(2, 15, 15);
-
     pLight = new THREE.PointLight(0xFFAA55);
     pLight.position.set(x, y + 5, z);
     pLight.distance = 20;

@@ -15,19 +15,19 @@ namespace Models
         // locations for the boat, robots and packages
         public World()
         {
-            Point a = new Point(-20, 5, 0);
-            Point b = new Point(-10, 5, 0);
-            Point c = new Point(-10, 5, 10);
-            Point d = new Point(0, 5, 10);
-            Point e = new Point(20, 5, 10);
-            Point f = new Point(10, 5, 0);
-            Point g = new Point(10, 5, -10);
-            Point h = new Point(0, 5, -10);
-            Point i = new Point(-10, 5, -10);
-            Point j = new Point(0, 5, 0);
+            Point a = new Point(-20, 0, 0);
+            Point b = new Point(-10, 0, 0);
+            Point c = new Point(-10, 0, 10);
+            Point d = new Point(0, 0, 10);
+            Point e = new Point(10, 0, 10);
+            Point f = new Point(10, 0, 0);
+            Point g = new Point(10, 0, -10);
+            Point h = new Point(0, 0, -10);
+            Point i = new Point(-10, 0, -10);
+            Point j = new Point(0, 0, 0);
 
             Point tA = new Point(-20, 0, -50);
-            Point tB = new Point(0, 0, 80);
+            Point tB = new Point(-20, 0, 0);
             Point tC = new Point(-20, 0, 50);
 
             a.AddNode(b);
@@ -65,8 +65,11 @@ namespace Models
 
             robot1.AddTask(new RobotMove(pointGraph, chest1.point));
             robot2.AddTask(new RobotMove(pointGraph, chest2.point));
-            robot3.AddTask(new RobotMove(pointGraph, chest5.point));
-           
+            robot3.AddTask(new RobotMove(pointGraph, chest3.point));
+            robot1.AddTask(new RobotMove(pointGraph, chest4.point));
+            robot2.AddTask(new RobotMove(pointGraph, chest5.point));
+            robot3.AddTask(new RobotMove(pointGraph, chest6.point));
+
 
             int counter = 3;
 
@@ -87,7 +90,7 @@ namespace Models
             t.AddTask(new BoatMove(tB));
             t.AddTask(new BoatLoad());
             t.AddTask(new BoatMove(tC));
-            //t.AddTask(new BoatTeleport(tA));
+            t.AddTask(new BoatTeleport(tA));
             t.AddTask(new BoatMove(tB));
             t.AddTask(new BoatDump(a));
             t.AddTask(new BoatMove(tC));

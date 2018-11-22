@@ -73,11 +73,11 @@ namespace Models
         {
             if (this.x < point.x)
             {
-                this.Move(this.x + 0.5m, this.y, this.z);
+                this.Move(this.x + 0.2m, this.y, this.z);
             }
             else if (this.x > point.x)
             {
-                this.Move(this.x - 0.5m, this.y, this.z);
+                this.Move(this.x - 0.2m, this.y, this.z);
             }
 
             if (this.z < point.z)
