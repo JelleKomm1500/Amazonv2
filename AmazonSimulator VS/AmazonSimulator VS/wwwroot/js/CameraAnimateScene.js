@@ -91,31 +91,30 @@
     exampleSocket.onmessage = function (event) {
         var command = parseCommand(event.data);
 
-        if (command.command == "update") {
+        if (command.command === "update") {
             models = new THREE.Group();
             scene.add(models);
             if (Object.keys(worldObjects).indexOf(command.parameters.guid) < 0) {
 
-                if (command.parameters.type == "robot") {
+                if (command.parameters.type === "robot") {
                     var robot = new Robot();
                     models.add(robot);
                     worldObjects[command.parameters.guid] = robot;
                 }
-
-                else if (command.parameters.type == "boat") {
-                    var boat = Boat();
+                else if (command.parameters.type === "boat") {
+                    var boat = new Boat();
                     models.add(boat);
                     worldObjects[command.parameters.guid] = boat;
                 }
-                else if (command.parameters.type == "lighthouse") {
-                    group.add(Lighthouse());
-
-                    worldObjects[command.parameters.guid] = group;
+                else if (command.parameters.type === "lighthouse") {
+                    var lighthouse = new Lighthouse();
+                    models.add(lighthouse);
+                    worldObjects[command.parameters.guid] = lighthouse;
                 }
-                else if (command.parameters.type == "barrels") {
+                else if (command.parameters.type === "barrels") {
                     group.add(Barrels());
 
-                    worldObjects[command.parameters.guid] = group;
+                    worldObjects[command.parameters.guid] = barrels;
                 }
             }
             var object = worldObjects[command.parameters.guid];

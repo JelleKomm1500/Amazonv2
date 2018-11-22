@@ -3,27 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace Models {
-    public class LightHouse : IUpdatable {
-        private double _x = 0;
-        private double _y = 0;
-        private double _z = 0;
-        private double _rX = 0;
-        private double _rY = 0;
-        private double _rZ = 0;
+namespace Models
+{
+    public class LightHouse : Model3D, IUpdatable
+    {
+        private List<Chest> _chests;
+        public List<Chest> chests { get { return _chests; } }
 
-        public string type { get; }
-        public Guid guid { get; }
-        public double x { get { return _x; } }
-        public double y { get { return _y; } }
-        public double z { get { return _z; } }
-        public double rotationX { get { return _rX; } }
-        public double rotationY { get { return _rY; } }
-        public double rotationZ { get { return _rZ; } }
+        private List<BoatTask> tasks = new List<BoatTask>();
 
-        public bool needsUpdate = true;
+        private bool _loadable;
+        public bool loadable { get { return _loadable; } }
 
-        public LightHouse(double x, double y, double z, double rotationX, double rotationY, double rotationZ) {
+        public LightHouse(decimal x, decimal y, decimal z, decimal rotationX, decimal rotationY, decimal rotationZ)
+        {
             this.type = "lighthouse";
             this.guid = Guid.NewGuid();
 
@@ -34,31 +27,22 @@ namespace Models {
             this._rX = rotationX;
             this._rY = rotationY;
             this._rZ = rotationZ;
+
+            this._chests = new List<Chest>();
+            this._loadable = false;
         }
 
-        public virtual void Move(double x, double y, double z) {
-            this._x = x;
-            this._y = y;
-            this._z = z;
-
-            needsUpdate = true;
-        }
-
-        public virtual void Rotate(double rotationX, double rotationY, double rotationZ) {
-            this._rX = rotationX;
-            this._rY = rotationY;
-            this._rZ = rotationZ;
-
-            needsUpdate = true;
-        }
-
-        public virtual bool Update(int tick)
+        public LightHouse(Point point)
         {
-            if(needsUpdate) {
-                needsUpdate = false;
-                return true;
-            }
-            return false;
+            this.type = "lighthouse";
+            this.guid = Guid.NewGuid();
+
+            this._x = point.x;
+            this._y = point.y;
+            this._z = point.z;
+
+            this._chests = new List<Chest>();
+            this._loadable = false;
         }
     }
 }

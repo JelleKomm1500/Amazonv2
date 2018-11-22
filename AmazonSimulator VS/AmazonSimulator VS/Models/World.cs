@@ -15,8 +15,8 @@ namespace Models
         // locations for the boat, robots and packages
         public World()
         {
-            Point a = new Point(-20, 0, 0);
-            Point b = new Point(-10, 0, 0);
+            Point a = new Point(-20, 10, 0);
+            Point b = new Point(-10, 10, 0);
             Point c = new Point(-10, 0, 10);
             Point d = new Point(0, 0, 10);
             Point e = new Point(10, 0, 10);
@@ -87,19 +87,19 @@ namespace Models
             t.AddTask(new BoatMove(tC));
         }
 
-        private Robot CreateRobot(decimal x, decimal y, decimal z)
-        {
-            Robot r = new Robot(x, y, z, 0, 0, 0);
-            worldObjects.Add(r);
-            return r;
-        }
-
         //Zet een robot op een punt neer
         private Robot CreateRobot(Point p)
         {
             Robot r = new Robot(p);
             worldObjects.Add(r);
             return r;
+        }
+
+        private LightHouse CreateLighthouse(decimal x, decimal y, decimal z)
+        {
+            LightHouse l = new LightHouse(x, y, z, 0, 0, 0);
+            worldObjects.Add(l);
+            return l;
         }
 
         private Chest CreateChest(decimal x, decimal y, decimal z)

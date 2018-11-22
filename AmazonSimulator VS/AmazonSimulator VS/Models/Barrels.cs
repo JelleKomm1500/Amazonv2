@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace Models
 {
-    public class Barrels : IUpdatable
+    public class Barrels : Model3D, IUpdatable
     {
         private double _x = 0;
         private double _y = 0;
