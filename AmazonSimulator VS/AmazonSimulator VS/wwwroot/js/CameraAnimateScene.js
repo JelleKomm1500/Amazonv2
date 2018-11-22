@@ -112,8 +112,8 @@
                     worldObjects[command.parameters.guid] = lighthouse;
                 }
                 else if (command.parameters.type === "barrels") {
-                    group.add(Barrels());
-
+                    var barrels = new Barrels();
+                    models.add(barrels);
                     worldObjects[command.parameters.guid] = barrels;
                 }
             }

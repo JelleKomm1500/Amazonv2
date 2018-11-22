@@ -49,6 +49,10 @@ namespace Models
             Robot robot2 = CreateRobot(a);
             Robot robot3 = CreateRobot(a);
 
+            LightHouse lighthouse1 = CreateLighthouse(0,0,0);
+
+            Barrels barrels1 = CreateBarrels(a);
+
             Chest chest1 = CreateChest(e);
             Chest chest2 = CreateChest(i);
             Chest chest3 = CreateChest(j);
@@ -93,6 +97,14 @@ namespace Models
             Robot r = new Robot(p);
             worldObjects.Add(r);
             return r;
+        }
+
+        private Barrels CreateBarrels(Point p)
+        {
+            Barrels b = new Barrels(p);
+            worldObjects.Add(b);
+            return b;
+
         }
 
         private LightHouse CreateLighthouse(decimal x, decimal y, decimal z)
