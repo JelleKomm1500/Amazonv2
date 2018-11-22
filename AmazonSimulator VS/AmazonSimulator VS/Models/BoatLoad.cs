@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 
 namespace Models
 {
@@ -11,13 +11,12 @@ namespace Models
 
         public bool TaskComplete(Boat t)
         {
-            if (t.loadable)
-            {
+            if(t.chests.Any() && t.loadable){
                 t.SwitchLoadable();
             }
 
             //De boat gaat weg als er 3 rekjes in de boat zitten
-            return true;
+            return t.chests.Count == 3;
         }
     }
 }

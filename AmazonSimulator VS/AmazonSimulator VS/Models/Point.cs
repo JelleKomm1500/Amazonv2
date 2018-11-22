@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
@@ -13,6 +13,7 @@ namespace Models
         private List<Point> _nodes = new List<Point>();
         private decimal _cost;
         private Point _path;
+        private Chest _chest;
 
         public List<Point> nodes { get { return _nodes; } }
         public decimal cost { get { return _cost; } }
@@ -20,6 +21,7 @@ namespace Models
         public decimal x { get { return _x; } }
         public decimal y { get { return _y; } }
         public decimal z { get { return _z; } }
+        public Chest chest { get { return _chest; } }
 
         public Point(decimal x, decimal y, decimal z)
         {
@@ -43,6 +45,15 @@ namespace Models
             {
                 this.AddNode(node);
             }
+        }
+
+        public void AddChest(Chest chest)
+        {
+            if (chest != null)
+            {
+                chest.AssignPoint(this);
+            }
+            this._chest = chest;
         }
         public void SetCost(decimal cost)
         {

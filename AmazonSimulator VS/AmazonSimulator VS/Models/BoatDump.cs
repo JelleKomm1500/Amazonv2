@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 
 namespace Models
 {
@@ -11,16 +11,16 @@ namespace Models
         }
         public void StartTask(Boat t)
         {
-            if (1 == 1)
+            if (point.chest == null)
             {
-                var i = 0;
+                t.RemoveChest(point);
             }
         }
 
         public bool TaskComplete(Boat t)
         {
             // "Dumpt" de rekjes naar een gewenst punt todat de boat 0 rekjes bevat
-            return true;
+            return !t.chests.Any();
         }
     }
 }

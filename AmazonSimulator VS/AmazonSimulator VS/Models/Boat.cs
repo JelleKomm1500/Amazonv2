@@ -7,8 +7,8 @@ namespace Models
 {
     public class Boat : Model3D, IUpdatable
     {
-        //private List<Chest> _chests;
-        //public List<Chest> chests { get { return _chests; } }
+        private List<Chest> _chests;
+        public List<Chest> chests { get { return _chests; } }
 
         private List<BoatTask> tasks = new List<BoatTask>();
 
@@ -28,7 +28,7 @@ namespace Models
             this._rY = rotationY;
             this._rZ = rotationZ;
 
-            //this._chests = new List<Chest>();
+            this._chests = new List<Chest>();
             this._loadable = false;
         }
 
@@ -41,32 +41,32 @@ namespace Models
             this._y = point.y;
             this._z = point.z;
 
-            //this._chests = new List<Chest>();
+            this._chests = new List<Chest>();
             this._loadable = false;
         }
-        //public void AddChest(Chest chest)
-        //{
-        //    _chests.Add(chest);
-        //    chest.AssignPoint(null);
-        //    chest.Move(this.x, this.y + 0.2m, this.z);
-        //}
+        public void AddChest(Chest chest)
+        {
+            _chests.Add(chest);
+            chest.AssignPoint(null);
+            chest.Move(this.x, this.y + 0.2m, this.z);
+        }
 
-        //public void RemoveChest(Robot r)
-        //{
-        //    if (_chests.Last() != null && r.chest == null)
-        //    {
-        //        r.AssignChest(_chests.Last());
-        //        _chests.Remove(_chests.Last());
-        //    }
-        //}
-        //public void RemoveChest(Point point)
-        //{
-        //    if (_chests.Last() != null && point.chest == null)
-        //    {
-        //        point.AddChest(_chests.Last());
-        //        _chests.Remove(_chests.Last());
-        //    }
-        //}
+        public void RemoveChest(Robot r)
+        {
+            if (_chests.Last() != null && r.chest == null)
+            {
+                r.AssignChest(_chests.Last());
+                _chests.Remove(_chests.Last());
+            }
+        }
+        public void RemoveChest(Point point)
+        {
+            if (_chests.Last() != null && point.chest == null)
+            {
+                point.AddChest(_chests.Last());
+                _chests.Remove(_chests.Last());
+            }
+        }
         public void SwitchLoadable()
         {
             if (loadable == false)
@@ -98,13 +98,13 @@ namespace Models
                 this.Move(this.x, this.y, this.z - 0.2m);
             }
 
-            //if (_chests != null)
-            //{
-            //    foreach (Chest chest in _chests)
-            //    {
-            //        chest.Move(this.x, this.y + 0.4m, this.z);
-            //    }
-            //}
+            if (_chests != null)
+            {
+                foreach (Chest chest in _chests)
+                {
+                    chest.Move(this.x, this.y + 0.4m, this.z);
+                }
+            }
         }
 
         public void AddTask(BoatTask task)

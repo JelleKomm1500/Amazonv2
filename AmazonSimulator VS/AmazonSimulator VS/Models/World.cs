@@ -45,76 +45,76 @@ namespace Models
 
             boatGraph = new Graph(new List<Point>() { tA, tB, tC });
 
-            //Robot robot1 = CreateRobot(a);
-            //Robot robot2 = CreateRobot(a);
-            //Robot robot3 = CreateRobot(a);
+            Robot robot1 = CreateRobot(a);
+            Robot robot2 = CreateRobot(a);
+            Robot robot3 = CreateRobot(a);
 
-            //Chest chest1 = CreateChest(e);
-            //Chest chest2 = CreateChest(i);
-            //Chest chest3 = CreateChest(j);
-            //Chest chest4 = CreateChest(g);
-            //Chest chest5 = CreateChest(b);
-            //Chest chest6 = CreateChest(c);
+            Chest chest1 = CreateChest(e);
+            Chest chest2 = CreateChest(i);
+            Chest chest3 = CreateChest(j);
+            Chest chest4 = CreateChest(g);
+            Chest chest5 = CreateChest(b);
+            Chest chest6 = CreateChest(c);
 
             Boat t = CreateBoat(tA);
 
-            //robot1.AddTask(new RobotMove(pointGraph, chest1.point));
-            //robot2.AddTask(new RobotMove(pointGraph, chest2.point));
-            //robot3.AddTask(new RobotMove(pointGraph, chest3.point));
+            robot1.AddTask(new RobotMove(pointGraph, chest1.point));
+            robot2.AddTask(new RobotMove(pointGraph, chest2.point));
+            robot3.AddTask(new RobotMove(pointGraph, chest3.point));
 
             int counter = 3;
 
-            //foreach (Model3D r in worldObjects)
-            //{
-            //    if (r is Robot)
-            //    {
-            //        ((Robot)r).AddTask(new RobotPickUp());
-            //        ((Robot)r).AddTask(new RobotMove(pointGraph, a));
-            //        ((Robot)r).AddTask(new RobotDropOff(t));
-            //        ((Robot)r).AddTask(new RobotPickUp());
-            //        ((Robot)r).AddTask(new RobotMove(pointGraph, pointList[counter]));
-            //        ((Robot)r).AddTask(new RobotDropOff(pointList[counter]));
-            //        counter++;
-            //        ((Robot)r).AddTask(new RobotMove(pointGraph, a));
-            //    }
-            //}
+            foreach (Model3D r in worldObjects)
+            {
+                if (r is Robot)
+                {
+                    ((Robot)r).AddTask(new RobotPickUp());
+                    ((Robot)r).AddTask(new RobotMove(pointGraph, a));
+                    ((Robot)r).AddTask(new RobotDropOff(t));
+                    ((Robot)r).AddTask(new RobotPickUp());
+                    ((Robot)r).AddTask(new RobotMove(pointGraph, pointList[counter]));
+                    ((Robot)r).AddTask(new RobotDropOff(pointList[counter]));
+                    counter++;
+                    ((Robot)r).AddTask(new RobotMove(pointGraph, a));
+                }
+            }
             t.AddTask(new BoatMove(tB));
             t.AddTask(new BoatLoad());
             t.AddTask(new BoatMove(tC));
-            //t.AddTask(new BoatTeleport(tA));
+            t.AddTask(new BoatTeleport(tA));
             t.AddTask(new BoatMove(tB));
             t.AddTask(new BoatDump(a));
             t.AddTask(new BoatMove(tC));
         }
 
-        //private Robot CreateRobot(decimal x, decimal y, decimal z)
-        //{
-        //    Robot r = new Robot(x, y, z, 0, 0, 0);
-        //    worldObjects.Add(r);
-        //    return r;
-        //}
+        private Robot CreateRobot(decimal x, decimal y, decimal z)
+        {
+            Robot r = new Robot(x, y, z, 0, 0, 0);
+            worldObjects.Add(r);
+            return r;
+        }
 
         //Zet een robot op een punt neer
-        //private Robot CreateRobot(Point p)
-        //{
-        //    Robot r = new Robot(p);
-        //    worldObjects.Add(r);
-        //    return r;
-        //}
+        private Robot CreateRobot(Point p)
+        {
+            Robot r = new Robot(p);
+            worldObjects.Add(r);
+            return r;
+        }
 
-        //private Chest CreateChest(decimal x, decimal y, decimal z)
-        //{
-        //    Chest r = new Chest(x, y, z, 0, 0, 0);
-        //    worldObjects.Add(r);
-        //    return r;
-        //}
+        private Chest CreateChest(decimal x, decimal y, decimal z)
+        {
+            Chest r = new Chest(x, y, z, 0, 0, 0);
+            worldObjects.Add(r);
+            return r;
+        }
 
-        //private Chest CreateChest(Point p)
-        //{
-        //    Chest r = new Chest(p);
-        //    worldObjects.Add(r);
-        //    return r;
-        //}
+        private Chest CreateChest(Point p)
+        {
+            Chest r = new Chest(p);
+            worldObjects.Add(r);
+            return r;
+        }
 
         private Boat CreateBoat(Point p)
         {
