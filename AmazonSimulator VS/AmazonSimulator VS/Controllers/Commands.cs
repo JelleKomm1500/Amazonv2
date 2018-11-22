@@ -16,10 +16,17 @@ namespace Controllers {
             this.parameters = parameters;
         }
 
-        public string ToJson() {
-            return JsonConvert.SerializeObject(new {
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(new
+            {
+
                 command = type,
                 parameters = parameters
+            },
+            new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
             });
         }
     }
