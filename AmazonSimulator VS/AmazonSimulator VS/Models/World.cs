@@ -81,7 +81,7 @@ namespace Models
             t.AddTask(new BoatMove(tB));
             t.AddTask(new BoatLoad());
             t.AddTask(new BoatMove(tC));
-            t.AddTask(new BoatTeleport(tA));
+            //t.AddTask(new BoatTeleport(tA));
             t.AddTask(new BoatMove(tB));
             t.AddTask(new BoatDump(a));
             t.AddTask(new BoatMove(tC));

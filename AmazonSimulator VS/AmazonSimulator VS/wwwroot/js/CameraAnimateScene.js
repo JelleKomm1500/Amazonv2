@@ -2,7 +2,7 @@
     //declare variables
     var camera, scene, renderer;
     var cameraControls;
-    var water, ship, lhLight;
+    var water, ship, lhLight, models;
     var boolTurn = false;
     var worldObjects = {};
     var x_p = 0;
@@ -90,39 +90,34 @@
     exampleSocket = new WebSocket("ws://" + window.location.hostname + ":" + window.location.port + "/connect_client");
     exampleSocket.onmessage = function (event) {
         var command = parseCommand(event.data);
-        var group = new THREE.Group();
 
-        if (command.command === "update") {
+        if (command.command == "update") {
+            models = new THREE.Group();
+            scene.add(models);
             if (Object.keys(worldObjects).indexOf(command.parameters.guid) < 0) {
 
-                if (command.parameters.type === "robot") {
-
-                    group.add(Robot());
-
-                    worldObjects[command.parameters.guid] = group;
+                if (command.parameters.type == "robot") {
+                    var robot = new Robot();
+                    models.add(robot);
+                    worldObjects[command.parameters.guid] = robot;
                 }
 
-                else if (command.parameters.type === "boat") {
-                    group.add(Boat());
-
-                    worldObjects[command.parameters.guid] = group;
-                    render();
+                else if (command.parameters.type == "boat") {
+                    var boat = Boat();
+                    models.add(boat);
+                    worldObjects[command.parameters.guid] = boat;
                 }
-                else if (command.parameters.type === "lighthouse") {
+                else if (command.parameters.type == "lighthouse") {
                     group.add(Lighthouse());
 
                     worldObjects[command.parameters.guid] = group;
                 }
-                else if (command.parameters.type === "barrels") {
+                else if (command.parameters.type == "barrels") {
                     group.add(Barrels());
 
                     worldObjects[command.parameters.guid] = group;
                 }
-
-                scene.add(group);
             }
-
-
             var object = worldObjects[command.parameters.guid];
 
             object.position.x = command.parameters.x;
