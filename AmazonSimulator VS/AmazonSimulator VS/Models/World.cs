@@ -17,13 +17,13 @@ namespace Models
         {
             Point a = new Point(-20, 10, 0);
             Point b = new Point(-10, 10, 0);
-            Point c = new Point(-10, 0, 10);
+            Point c = new Point(-10, 5, 10);
             Point d = new Point(0, 0, 10);
-            Point e = new Point(10, 0, 10);
+            Point e = new Point(100, 0, 10);
             Point f = new Point(10, 0, 0);
             Point g = new Point(10, 0, -10);
             Point h = new Point(0, 0, -10);
-            Point i = new Point(-10, 0, -10);
+            Point i = new Point(-100, 0, -10);
             Point j = new Point(0, 0, 0);
 
             Point tA = new Point(-20, 0, -50);
@@ -51,7 +51,7 @@ namespace Models
 
             LightHouse lighthouse1 = CreateLighthouse(0,0,0);
 
-            Barrels barrels1 = CreateBarrels(a);
+            Barrels barrels1 = CreateBarrels(c);
 
             Chest chest1 = CreateChest(e);
             Chest chest2 = CreateChest(i);
@@ -99,9 +99,9 @@ namespace Models
             return r;
         }
 
-        private Barrels CreateBarrels(Point p)
+        private Barrels CreateBarrels(Point a)
         {
-            Barrels b = new Barrels(p);
+            Barrels b = new Barrels(a);
             worldObjects.Add(b);
             return b;
 

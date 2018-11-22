@@ -11,7 +11,7 @@ namespace Models
         public Point point { get { return _point; } }
         public Chest(decimal x, decimal y, decimal z, decimal rotationX, decimal rotationY, decimal rotationZ)
         {
-            this.type = "chest";
+            this.type = "barrels";
             this.guid = Guid.NewGuid();
 
             this._x = x;
@@ -25,7 +25,7 @@ namespace Models
 
         public Chest(Point point)
         {
-            this.type = "chest";
+            this.type = "barrels";
             this.guid = Guid.NewGuid();
         
             this._x = point.x;
