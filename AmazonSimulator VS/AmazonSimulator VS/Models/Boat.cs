@@ -7,8 +7,8 @@ namespace Models
 {
     public class Boat : Model3D, IUpdatable
     {
-        private List<Chest> _chests;
-        public List<Chest> chests { get { return _chests; } }
+        private List<Barrels> _chests;
+        public List<Barrels> chests { get { return _chests; } }
 
         private List<BoatTask> tasks = new List<BoatTask>();
 
@@ -28,7 +28,7 @@ namespace Models
             this._rY = rotationY;
             this._rZ = rotationZ;
 
-            this._chests = new List<Chest>();
+            this._chests = new List<Barrels>();
             this._loadable = false;
         }
 
@@ -41,14 +41,14 @@ namespace Models
             this._y = point.y;
             this._z = point.z;
 
-            this._chests = new List<Chest>();
+            this._chests = new List<Barrels>();
             this._loadable = false;
         }
-        public void AddChest(Chest chest)
+        public void AddChest(Barrels chest)
         {
             _chests.Add(chest);
             chest.AssignPoint(null);
-            chest.Move(this.x, this.y + 0.2m, this.z);
+            chest.Move(this.x, this.y + 0.5m, this.z);
         }
 
         public void RemoveChest(Robot r)
@@ -100,7 +100,7 @@ namespace Models
 
             if (_chests != null)
             {
-                foreach (Chest chest in _chests)
+                foreach (Barrels chest in _chests)
                 {
                     chest.Move(this.x, this.y + 0.4m, this.z);
                 }

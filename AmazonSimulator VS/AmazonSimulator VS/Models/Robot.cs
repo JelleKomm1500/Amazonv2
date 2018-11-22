@@ -13,8 +13,8 @@ namespace Models
         public Point currentPoint { get { return _currentPoint; } }
         private List<Point> route = new List<Point>();
         private List<RobotTask> tasks = new List<RobotTask>();
-        private Chest _chest;
-        public Chest chest { get { return _chest; } }
+        private Barrels _chest;
+        public Barrels chest { get { return _chest; } }
         public Robot(decimal x, decimal y, decimal z, decimal rotationX, decimal rotationY, decimal rotationZ)
         {
             this.type = "robot";
@@ -73,20 +73,20 @@ namespace Models
         {
             if (this.x < point.x)
             {
-                this.Move(this.x + 0.1m, this.y, this.z);
+                this.Move(this.x + 0.5m, this.y, this.z);
             }
             else if (this.x > point.x)
             {
-                this.Move(this.x - 0.1m, this.y, this.z);
+                this.Move(this.x - 0.5m, this.y, this.z);
             }
 
             if (this.z < point.z)
             {
-                this.Move(this.x, this.y, this.z + 0.1m);
+                this.Move(this.x, this.y, this.z + 0.5m);
             }
             else if (this.z > point.z)
             {
-                this.Move(this.x, this.y, this.z - 0.1m);
+                this.Move(this.x, this.y, this.z - 0.5m);
             }
         }
 
@@ -126,7 +126,7 @@ namespace Models
             _currentPoint = point;
         }
 
-        public void AssignChest(Chest chest)
+        public void AssignChest(Barrels chest)
         {
             if (chest.point == this.currentPoint)
             {

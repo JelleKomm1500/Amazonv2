@@ -15,16 +15,16 @@ namespace Models
         // locations for the boat, robots and packages
         public World()
         {
-            Point a = new Point(-20, 10, 0);
-            Point b = new Point(-10, 10, 0);
+            Point a = new Point(-20, 5, 0);
+            Point b = new Point(-10, 5, 0);
             Point c = new Point(-10, 5, 10);
-            Point d = new Point(0, 0, 10);
-            Point e = new Point(100, 0, 10);
-            Point f = new Point(10, 0, 0);
-            Point g = new Point(10, 0, -10);
-            Point h = new Point(0, 0, -10);
-            Point i = new Point(-100, 0, -10);
-            Point j = new Point(0, 0, 0);
+            Point d = new Point(0, 5, 10);
+            Point e = new Point(20, 5, 10);
+            Point f = new Point(10, 5, 0);
+            Point g = new Point(10, 5, -10);
+            Point h = new Point(0, 5, -10);
+            Point i = new Point(-10, 5, -10);
+            Point j = new Point(0, 5, 0);
 
             Point tA = new Point(-20, 0, -50);
             Point tB = new Point(0, 0, 80);
@@ -48,23 +48,25 @@ namespace Models
             Robot robot1 = CreateRobot(a);
             Robot robot2 = CreateRobot(a);
             Robot robot3 = CreateRobot(a);
+            
 
             LightHouse lighthouse1 = CreateLighthouse(0,0,0);
 
             Barrels barrels1 = CreateBarrels(c);
 
-            Chest chest1 = CreateChest(e);
-            Chest chest2 = CreateChest(i);
-            Chest chest3 = CreateChest(j);
-            Chest chest4 = CreateChest(g);
-            Chest chest5 = CreateChest(b);
-            Chest chest6 = CreateChest(c);
+            Barrels chest1 = CreateChest(e);
+            Barrels chest2 = CreateChest(i);
+            Barrels chest3 = CreateChest(j);
+            Barrels chest4 = CreateChest(g);
+            Barrels chest5 = CreateChest(b);
+            Barrels chest6 = CreateChest(c);
 
             Boat t = CreateBoat(tA);
 
             robot1.AddTask(new RobotMove(pointGraph, chest1.point));
             robot2.AddTask(new RobotMove(pointGraph, chest2.point));
-            robot3.AddTask(new RobotMove(pointGraph, chest3.point));
+            robot3.AddTask(new RobotMove(pointGraph, chest5.point));
+           
 
             int counter = 3;
 
@@ -114,16 +116,16 @@ namespace Models
             return l;
         }
 
-        private Chest CreateChest(decimal x, decimal y, decimal z)
+        private Barrels CreateChest(decimal x, decimal y, decimal z)
         {
-            Chest r = new Chest(x, y, z, 0, 0, 0);
+            Barrels r = new Barrels(x, y, z, 0, 0, 0);
             worldObjects.Add(r);
             return r;
         }
 
-        private Chest CreateChest(Point p)
+        private Barrels CreateChest(Point p)
         {
-            Chest r = new Chest(p);
+            Barrels r = new Barrels(p);
             worldObjects.Add(r);
             return r;
         }

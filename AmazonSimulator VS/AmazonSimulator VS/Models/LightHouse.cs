@@ -7,8 +7,8 @@ namespace Models
 {
     public class LightHouse : Model3D, IUpdatable
     {
-        private List<Chest> _chests;
-        public List<Chest> chests { get { return _chests; } }
+        private List<Barrels> _chests;
+        public List<Barrels> chests { get { return _chests; } }
 
         private List<BoatTask> tasks = new List<BoatTask>();
 
@@ -28,7 +28,7 @@ namespace Models
             this._rY = rotationY;
             this._rZ = rotationZ;
 
-            this._chests = new List<Chest>();
+            this._chests = new List<Barrels>();
             this._loadable = false;
         }
 
@@ -41,7 +41,7 @@ namespace Models
             this._y = point.y;
             this._z = point.z;
 
-            this._chests = new List<Chest>();
+            this._chests = new List<Barrels>();
             this._loadable = false;
         }
     }

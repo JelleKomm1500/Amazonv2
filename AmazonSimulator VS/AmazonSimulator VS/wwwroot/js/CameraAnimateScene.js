@@ -2,8 +2,10 @@
     //declare variables
     var camera, scene, renderer;
     var cameraControls;
-    var water, ship, lhLight, models;
-    var boolTurn = false;
+    var water, models;
+    var lights = lighthouseLight();
+    var spotLight = lights[0];
+    var pointLight = lights[1];
     var worldObjects = {};
     var x_p = 0;
 
@@ -27,31 +29,13 @@
         window.addEventListener('resize', onWindowResize, false);
         //store water and the boat in another variable, so that it can be used outside of the init function
         water = WaterRender();
-        //ship = Boat();
-        lhLight = lighthouseLight();
-        //add the objects and geometries to the scene
         scene.add(water);
-        //scene.add(ship);
         scene.add(Skybox());
         scene.add(Platform());
-        //var geometry = new THREE.BoxGeometry(1, 1, 1);
-        //material = new THREE.MeshPhongMaterial({
-        //    color: 0xff0000,
-        //});
-        //mesh = new THREE.Mesh(geometry, material);
-        //mesh.castShadow = true;
-        //mesh.position.set(0, 10, 0);
-        //mesh.scale.set(10, 10, 10);
-        //scene.add(mesh);
-        //scene.add(Barrels());
         scene.add(Track());
-        //scene.add(lighthouse());
         scene.add(Light());
-        scene.add(lhLight);
-        spotLightHelper = new THREE.SpotLightHelper(lhLight);
-        scene.add(spotLightHelper);
-        var helper = new THREE.CameraHelper(lhLight.shadow.camera);
-        scene.add(helper);
+        scene.add(spotLight);
+        scene.add(pointLight);
     }
 
     function onWindowResize() {
@@ -62,24 +46,14 @@
 
     function animate() {
         requestAnimationFrame(animate);
-        spotLightHelper.update();
-        if (x_p < 300 && boolTurn === false) {
-            x_p += 1;
-            if (x_p === 100) {
-                boolTurn = true;
-            }
-        }
-        else if (boolTurn === true) {
-            x_p -= 1;
-            if (x_p === -100) {
-                boolTurn = false;
-            }
-        }
-        lhLight.target.position.set(x_p, 0, x_p);
-        lhLight.target.updateMatrixWorld();
+        x_p = moveLight(x_p);
+        spotLight.target.position.set(x_p, 0, x_p);
+        spotLight.target.updateMatrixWorld();
         cameraControls.update();
         render();
     }
+
+
     //render function to animate the water shader, also cause off huge gpu dependency
     function render() {
         var time = performance.now() * 0.001;

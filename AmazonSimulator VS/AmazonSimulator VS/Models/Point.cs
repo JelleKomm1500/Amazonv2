@@ -13,7 +13,7 @@ namespace Models
         private List<Point> _nodes = new List<Point>();
         private decimal _cost;
         private Point _path;
-        private Chest _chest;
+        private Barrels _chest;
 
         public List<Point> nodes { get { return _nodes; } }
         public decimal cost { get { return _cost; } }
@@ -21,7 +21,7 @@ namespace Models
         public decimal x { get { return _x; } }
         public decimal y { get { return _y; } }
         public decimal z { get { return _z; } }
-        public Chest chest { get { return _chest; } }
+        public Barrels chest { get { return _chest; } }
 
         public Point(decimal x, decimal y, decimal z)
         {
@@ -47,7 +47,7 @@ namespace Models
             }
         }
 
-        public void AddChest(Chest chest)
+        public void AddChest(Barrels chest)
         {
             if (chest != null)
             {
