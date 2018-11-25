@@ -1,11 +1,17 @@
-//adds ambient light
-function Light(){
+/**
+ * Creates ambient light sets it intensity low and returns it
+ * @returns {THREE.AmbientLight} returns ambientlight
+ */
+function light(){
     var light = new THREE.AmbientLight(0x404040);
-    light.intensity = 4;
+    light.intensity = 1;
 
     return light;
 }
-
+/**
+ * Creates a spotlight and sets it properties, later calls the function lhPointLight to create the pointlight, with the help of the x, y and z positions of the spotlight
+ * @returns {THREE.SpotLight, THREE.PointLight} returns a spotlight and a pointlight
+ */
 function lighthouseLight() {
     var light = new THREE.SpotLight(0xFFAA55);
     var pLight;
@@ -28,7 +34,13 @@ function lighthouseLight() {
 
     return [light, pLight];
 }
-
+/**
+ * Creates a pointlight and binds it to the location of the spotlight
+ * @param {number} x position x of spotlight
+ * @param {number} y position y of spotlight
+ * @param {number} z position z of spotlight
+ * @returns {THREE.PointLight} returns the pointlight to the lighthouseLight function
+ */
 function lhPointLight(x, y, z) {
     pLight = new THREE.PointLight(0xFFAA55);
     pLight.position.set(x, y + 5, z);
@@ -40,6 +52,11 @@ function lhPointLight(x, y, z) {
 }
 var boolTurn = false;
 
+/**
+ * Defines the x and z value of the spotlight.target in CameraAnimateScene. 
+ * @param {number} x_p rotation value of x and z positon of spotlight.target
+ * @returns {number} returns the value of x_p
+ */
 function moveLight(x_p) {
 
     if (x_p < 300 && boolTurn === false) {

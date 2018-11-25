@@ -1,5 +1,8 @@
-//Makes a layer of water using jpg file, gets an animation in the index file
-function WaterRender(){
+/**
+ * Creates a plane and adds it to the THREE.Water to create a water plane
+ * @returns {THREE.Water} returns the water plane, which will later be animated
+ */
+function waterRender(){
     var water;
     var waterGeometry = new THREE.PlaneBufferGeometry( 950, 950 );
     water = new THREE.Water(
