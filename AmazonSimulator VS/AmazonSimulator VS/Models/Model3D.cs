@@ -24,6 +24,12 @@ namespace Models
         public decimal rotationZ { get { return _rZ; } }
         public bool needsUpdate = true;
 
+        /// <summary>
+        /// The base move method, changing the position and the needsupdate
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
         public virtual void Move(decimal x, decimal y, decimal z)
         {
             this._x = x;
@@ -33,6 +39,12 @@ namespace Models
             needsUpdate = true;
         }
 
+        /// <summary>
+        /// The base rotate method, changing the rotation and the needsupdate
+        /// </summary>
+        /// <param name="rotationX"></param>
+        /// <param name="rotationY"></param>
+        /// <param name="rotationZ"></param>
         public virtual void Rotate(decimal rotationX, decimal rotationY, decimal rotationZ)
         {
             this._rX = rotationX;
@@ -42,6 +54,11 @@ namespace Models
             needsUpdate = true;
         }
 
+        /// <summary>
+        /// The base update method, used to make the application tick 50 times every second
+        /// </summary>
+        /// <param name="tick"></param>
+        /// <returns></returns>
         public virtual bool Update(int tick)
         {
             if (needsUpdate)

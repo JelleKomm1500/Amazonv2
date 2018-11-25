@@ -11,7 +11,7 @@ namespace Models
         public Point point { get { return _point; } }
 
         /// <summary>
-        /// Test comments
+        /// Constructor for creating Barrels with a position
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -33,6 +33,10 @@ namespace Models
             this._rZ = rotationZ;
         }
 
+        /// <summary>
+        /// Constructor for creating Barrels with a point
+        /// </summary>
+        /// <param name="point"></param>
         public Barrels(Point point)
         {
             this.type = "barrels";
@@ -43,9 +47,13 @@ namespace Models
             this._z = point.z;
 
             this._point = point;
-            point.AddChest(this);
+            point.AddBarrel(this);
         }
 
+        /// <summary>
+        /// Method to set the point
+        /// </summary>
+        /// <param name="point"></param>
         public void AssignPoint(Point point)
         {
             this._point = point;
