@@ -81,7 +81,7 @@ namespace Models
         }
 
         /// <summary>
-        /// Method to remove chest to list and move them to the specified point
+        /// Method to remove barrel to list and move them to the specified point
         /// </summary>
         /// <param name="point"></param>
         public void RemoveBarrel(Point point)
