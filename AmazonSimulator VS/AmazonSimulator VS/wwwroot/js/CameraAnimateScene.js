@@ -31,8 +31,8 @@
         water = WaterRender();
         scene.add(water);
         scene.add(Skybox());
-        scene.add(Platform());
-        scene.add(Track());
+        //scene.add(Platform());
+        //scene.add(Track());
         scene.add(Light());
         scene.add(spotLight);
         scene.add(pointLight);

@@ -15,6 +15,7 @@ namespace Models
         private List<RobotTask> tasks = new List<RobotTask>();
         private Barrels _chest;
         public Barrels chest { get { return _chest; } }
+
         public Robot(decimal x, decimal y, decimal z, decimal rotationX, decimal rotationY, decimal rotationZ)
         {
             this.type = "robot";
@@ -73,11 +74,11 @@ namespace Models
         {
             if (this.x < point.x)
             {
-                this.Move(this.x + 0.2m, this.y, this.z);
+                this.Move(this.x + 0.4m, this.y, this.z);
             }
             else if (this.x > point.x)
             {
-                this.Move(this.x - 0.2m, this.y, this.z);
+                this.Move(this.x - 0.4m, this.y, this.z);
             }
 
             if (this.z < point.z)
@@ -115,6 +116,7 @@ namespace Models
                 return false;
             }
         }
+
         public void AssignPoint(Point point)
         {
             _desiredPoint = point;

@@ -16,6 +16,7 @@ namespace Models
             boat = null;
             point = p;
         }
+
         public void StartTask(Robot r)
         {
             if (boat != null && boat.loadable)
@@ -27,6 +28,7 @@ namespace Models
                 r.RemoveChest(point);
             }
         }
+
         public bool TaskComplete(Robot r)
         {
             return r.chest == null;

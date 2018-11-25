@@ -29,6 +29,7 @@ namespace Models{
                     p.SetCost(decimal.MaxValue);
                 }
             }
+
             // Hier wordt de endPoint aan het eind van de list toegevoegd, zodat het als laatste wordt berekend.
             endPoint.SetCost(decimal.MaxValue);
             unvisited.Add(endPoint);
@@ -89,6 +90,7 @@ namespace Models{
                     result.Add(p);
                 }
             }
+
             while (result[0] != startPoint)
             {
                 foreach (Point p in visited)

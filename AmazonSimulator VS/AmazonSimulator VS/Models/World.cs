@@ -48,7 +48,6 @@ namespace Models
             Robot robot1 = CreateRobot(a);
             Robot robot2 = CreateRobot(a);
             Robot robot3 = CreateRobot(a);
-            
 
             LightHouse lighthouse1 = CreateLighthouse(0,0,0);
 
@@ -70,7 +69,6 @@ namespace Models
             robot2.AddTask(new RobotMove(pointGraph, chest5.point));
             robot3.AddTask(new RobotMove(pointGraph, chest6.point));
 
-
             int counter = 3;
 
             foreach (Model3D r in worldObjects)
@@ -87,6 +85,7 @@ namespace Models
                     ((Robot)r).AddTask(new RobotMove(pointGraph, a));
                 }
             }
+
             t.AddTask(new BoatMove(tB));
             t.AddTask(new BoatLoad());
             t.AddTask(new BoatMove(tC));
@@ -139,6 +138,7 @@ namespace Models
             worldObjects.Add(r);
             return r;
         }
+
         public IDisposable Subscribe(IObserver<Command> observer)
         {
             if (!observers.Contains(observer))

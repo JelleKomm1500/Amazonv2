@@ -9,6 +9,7 @@ namespace Models
     {
         private Point _point;
         public Point point { get { return _point; } }
+
         public Barrels(decimal x, decimal y, decimal z, decimal rotationX, decimal rotationY, decimal rotationZ)
         {
             this.type = "barrels";

@@ -55,10 +55,12 @@ namespace Models
             }
             this._chest = chest;
         }
+
         public void SetCost(decimal cost)
         {
             this._cost = cost;
         }
+
         public void SetPath(Point path)
         {
             this._path = path;

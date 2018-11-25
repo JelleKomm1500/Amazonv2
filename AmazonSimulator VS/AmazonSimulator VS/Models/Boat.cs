@@ -9,9 +9,7 @@ namespace Models
     {
         private List<Barrels> _chests;
         public List<Barrels> chests { get { return _chests; } }
-
         private List<BoatTask> tasks = new List<BoatTask>();
-
         private bool _loadable;
         public bool loadable { get { return _loadable; } }
 
@@ -44,6 +42,7 @@ namespace Models
             this._chests = new List<Barrels>();
             this._loadable = false;
         }
+
         public void AddChest(Barrels chest)
         {
             _chests.Add(chest);
@@ -59,6 +58,7 @@ namespace Models
                 _chests.Remove(_chests.Last());
             }
         }
+
         public void RemoveChest(Point point)
         {
             if (_chests.Last() != null && point.chest == null)
@@ -67,6 +67,7 @@ namespace Models
                 _chests.Remove(_chests.Last());
             }
         }
+
         public void SwitchLoadable()
         {
             if (loadable == false)
@@ -78,24 +79,25 @@ namespace Models
                 this._loadable = true;
             }
         }
+
         public void Move(Point point)
         {
             if (this.x < point.x)
             {
-                this.Move(this.x + 0.2m, this.y, this.z);
+                this.Move(this.x + 0.8m, this.y, this.z);
             }
             else if (this.x > point.x)
             {
-                this.Move(this.x - 0.2m, this.y, this.z);
+                this.Move(this.x - 0.5m, this.y, this.z);
             }
 
             if (this.z < point.z)
             {
-                this.Move(this.x, this.y, this.z + 0.2m);
+                this.Move(this.x, this.y, this.z + 0.5m);
             }
             else if (this.z > point.z)
             {
-                this.Move(this.x, this.y, this.z - 0.2m);
+                this.Move(this.x, this.y, this.z - 0.5m);
             }
 
             if (_chests != null)

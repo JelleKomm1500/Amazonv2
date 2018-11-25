@@ -8,6 +8,7 @@ namespace Models
     {
         Graph graph;
         Point point;
+
         public RobotMove(Graph graph, Point point)
         {
             this.graph = graph;

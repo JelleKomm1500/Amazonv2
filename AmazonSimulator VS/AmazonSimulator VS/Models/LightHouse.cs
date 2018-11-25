@@ -9,10 +9,9 @@ namespace Models
     {
         private List<Barrels> _chests;
         public List<Barrels> chests { get { return _chests; } }
-
         private List<BoatTask> tasks = new List<BoatTask>();
-
         private bool _loadable;
+
         public bool loadable { get { return _loadable; } }
 
         public LightHouse(decimal x, decimal y, decimal z, decimal rotationX, decimal rotationY, decimal rotationZ)

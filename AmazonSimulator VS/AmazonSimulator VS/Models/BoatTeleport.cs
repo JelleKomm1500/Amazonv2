@@ -3,10 +3,12 @@ namespace Models
     public class BoatTeleport : BoatTask
     {
         private Point point;
+
         public BoatTeleport(Point point)
         {
             this.point = point;
         }
+
         public void StartTask(Boat t)
         {
             t.Move(point.x, point.y, point.z);

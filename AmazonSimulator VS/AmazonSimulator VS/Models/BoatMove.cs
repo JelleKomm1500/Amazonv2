@@ -4,6 +4,7 @@ namespace Models{
         public BoatMove(Point point){
             this.point = point;
         }
+
         public void StartTask(Boat t)
         {
             t.Move(point);

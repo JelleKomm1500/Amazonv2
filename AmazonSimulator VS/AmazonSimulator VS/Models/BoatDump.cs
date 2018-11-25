@@ -5,10 +5,12 @@ namespace Models
     public class BoatDump : BoatTask
     {
         Point point;
+
         public BoatDump(Point point)
         {
             this.point = point;
         }
+
         public void StartTask(Boat t)
         {
             if (point.chest == null)
