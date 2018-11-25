@@ -1,8 +1,5 @@
-/**
- * A three.js group is made, after that the function LoadObjModel is called, to load in a boat. It properties are then set.
- * @returns {THREE.Group} returns the boat, which is placed in the scene in the world.cs file
- */
-function boat() {
+//Load boat object and places it on the map
+function Boat() {
     var boat = new THREE.Group();
 
     LoadOBJModel("textures/objects/boat/", "boat.obj", "textures/objects/boat/", "boat.mtl", (mesh) => {
