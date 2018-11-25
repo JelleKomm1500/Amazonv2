@@ -13,9 +13,18 @@ namespace Models
         public Point currentPoint { get { return _currentPoint; } }
         private List<Point> route = new List<Point>();
         private List<RobotTask> tasks = new List<RobotTask>();
-        private Barrels _chest;
-        public Barrels chest { get { return _chest; } }
+        private Barrels _barrel;
+        public Barrels barrel { get { return _barrel; } }
 
+        /// <summary>
+        /// Constructor for creating the robot with a position
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <param name="rotationX"></param>
+        /// <param name="rotationY"></param>
+        /// <param name="rotationZ"></param>
         public Robot(decimal x, decimal y, decimal z, decimal rotationX, decimal rotationY, decimal rotationZ)
         {
             this.type = "robot";
@@ -29,9 +38,13 @@ namespace Models
             this._rY = rotationY;
             this._rZ = rotationZ;
 
-            this._chest = null;
+            this._barrel = null;
         }
 
+        /// <summary>
+        /// Constructor for creating the robot with a point
+        /// </summary>
+        /// <param name="point"></param>
         public Robot(Point point)
         {
             this.type = "robot";
@@ -45,16 +58,25 @@ namespace Models
             this._desiredPoint = _currentPoint;
             route.Add(_currentPoint);
 
-            this._chest = null;
+            this._barrel = null;
         }
 
+        /// <summary>
+        /// Method used to add a task to the object
+        /// </summary>
+        /// <param name="task"></param>
         public void AddTask(RobotTask task)
         {
             tasks.Add(task);
         }
+
+        /// <summary>
+        /// The main method used to make the robot move over the shortest path
+        /// </summary>
+        /// <param name="pointGraph"></param>
+        /// <param name="point"></param>
         public void MoveOverPath(Graph pointGraph, Point point)
         {
-            //Berekent de route oor middel van Dijkstra en volgt die route als de task "RobotMove" aan de beurt is.
             _desiredPoint = point;
             if (route.Count == 1)
             {
@@ -70,6 +92,10 @@ namespace Models
             }
         }
 
+        /// <summary>
+        /// Method for movement of the object
+        /// </summary>
+        /// <param name="point"></param>
         public void Move(Point point)
         {
             if (this.x < point.x)
@@ -91,6 +117,12 @@ namespace Models
             }
         }
 
+        /// <summary>
+        /// Method used to check if the robot is on a certain point, returning true or false based on location
+        /// </summary>
+        /// <param name="robot"></param>
+        /// <param name="point"></param>
+        /// <returns></returns>
         public bool IsOnPoint(Robot robot, Point point)
         {
             if (robot.x == point.x)
@@ -117,41 +149,67 @@ namespace Models
             }
         }
 
+        /// <summary>
+        /// Method used to set the desiredpoint to another point, making the robot go there
+        /// </summary>
+        /// <param name="point"></param>
         public void AssignPoint(Point point)
         {
             _desiredPoint = point;
             needsUpdate = true;
         }
 
+
+        /// <summary>
+        /// Method used to set the currenpoint to another point
+        /// </summary>
+        /// <param name="point"></param>
         public void CurrentPoint(Point point)
         {
             _currentPoint = point;
         }
 
-        public void AssignChest(Barrels chest)
+        /// <summary>
+        /// Method used to "pick up" the barrel and make it hover above the robot
+        /// </summary>
+        /// <param name="barrel"></param>
+        public void AssignBarrel(Barrels barrel)
         {
-            if (chest.point == this.currentPoint)
+            if (barrel.point == this.currentPoint)
             {
-                chest.AssignPoint(null);
-                this._chest = chest;
-                _chest.Move(this._x, this._y + 1, this._z);
+                barrel.AssignPoint(null);
+                this._barrel = barrel;
+                _barrel.Move(this._x, this._y + 1, this._z);
                 needsUpdate = true;
             }
         }
 
-        public void RemoveChest(Boat boat)
+        /// <summary>
+        /// Method to remove a barrel from a boat
+        /// </summary>
+        /// <param name="boat"></param>
+        public void RemoveBarrel(Boat boat)
         {
-            boat.AddChest(this.chest);
-            this._chest = null;
+            boat.AddBarrel(this.barrel);
+            this._barrel = null;
         }
 
-        public void RemoveChest(Point point)
+        /// <summary>
+        /// Method to remove a barrel from a point
+        /// </summary>
+        /// <param name="point"></param>
+        public void RemoveBarrel(Point point)
         {
-            point.AddChest(this.chest);
-            this._chest.AssignPoint(point);
-            this._chest = null;
+            point.AddBarrel(this.barrel);
+            this._barrel.AssignPoint(point);
+            this._barrel = null;
         }
 
+        /// <summary>
+        /// Default update method modified to make the robot move with the barrel at the same time
+        /// </summary>
+        /// <param name="tick"></param>
+        /// <returns></returns>
         public override bool Update(int tick)
         {
             if (tasks != null && tasks.Any())
@@ -172,11 +230,10 @@ namespace Models
             }
             if (route.Count > 1)
             {
-                //Beweegt de robot samen met de chest elke frame
                 this.Move(route[1]);
-                if (this.chest != null)
+                if (this.barrel != null)
                 {
-                    _chest.Move(this._x, this._y + 1, this._z);
+                    _barrel.Move(this._x, this._y + 1, this._z);
                 }
             }
             return base.Update(tick);
