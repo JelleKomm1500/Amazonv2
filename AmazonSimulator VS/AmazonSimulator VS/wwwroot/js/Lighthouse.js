@@ -1,5 +1,8 @@
-﻿//Load boat object and places it on the map
-function Lighthouse() {
+﻿/**
+ * A three.js group is made, after that the function LoadObjModel is called, to load in a lighthouse. It properties are then set.
+ * @returns {THREE.Group} returns the lighthouse, which is placed in the scene in the world.cs file
+ */
+function lighthouse() {
     var lighthouseGroup = new THREE.Group();
 
     LoadOBJModel("textures/objects/lighthouse/", "Lighthouse.obj", "textures/objects/lighthouse/", "Lighthouse.mtl", (mesh) => {
