@@ -58,7 +58,7 @@
         </member>
         <member name="M:Models.Boat.RemoveBarrel(Models.Point)">
             <summary>
-            Method to remove chest to list and move them to the specified point
+            Method to remove barrel to list and move them to the specified point
             </summary>
             <param name="point"></param>
         </member>

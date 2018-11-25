@@ -77,24 +77,24 @@ window.onload = function () {
             if (Object.keys(worldObjects).indexOf(command.parameters.guid) < 0) {
 
                 if (command.parameters.type === "robot") {
-                    var robot = new robot();
-                    models.add(robot);
-                    worldObjects[command.parameters.guid] = robot;
+                    var robotSpawn = new robot();
+                    models.add(robotSpawn);
+                    worldObjects[command.parameters.guid] = robotSpawn;
                 }
                 else if (command.parameters.type === "boat") {
-                    var boat = new boat();
-                    models.add(boat);
-                    worldObjects[command.parameters.guid] = boat;
+                    var boatSpawn = new boat();
+                    models.add(boatSpawn);
+                    worldObjects[command.parameters.guid] = boatSpawn;
                 }
                 else if (command.parameters.type === "lighthouse") {
-                    var lighthouse = new lighthouse();
-                    models.add(lighthouse);
-                    worldObjects[command.parameters.guid] = lighthouse;
+                    var lighthouseSpawn = new lighthouse();
+                    models.add(lighthouseSpawn);
+                    worldObjects[command.parameters.guid] = lighthouseSpawn;
                 }
                 else if (command.parameters.type === "barrels") {
-                    var barrels = new barrels();
-                    models.add(barrels);
-                    worldObjects[command.parameters.guid] = barrels;
+                    var barrelsSpawn = new barrels();
+                    models.add(barrelsSpawn);
+                    worldObjects[command.parameters.guid] = barrelsSpawn;
                 }
             }
             var object = worldObjects[command.parameters.guid];
@@ -102,7 +102,6 @@ window.onload = function () {
             object.position.x = command.parameters.x;
             object.position.y = command.parameters.y;
             object.position.z = command.parameters.z;
-
         }
     };
     init();
