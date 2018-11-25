@@ -4,24 +4,24 @@ using System.Linq;
 
 namespace Models{
     static class DijkstraClass {
-        //Class and methods used to calculate the shortest path from point to point, the dijkstra algorithm is used for this
+        //Dijkstra algorithme die de kortste route vanaf beginpunt naar eindpunt in een graph returnt
         public static List<Point> Dijkstra(Graph pointList, Point startPoint, Point endPoint)
         {
             List<Point> unvisited = new List<Point>();
             List<Point> visited = new List<Point>();
             List<Point> result = new List<Point>();
 
+            // De startPoint moet als eerste aan de beurt komen dus wordt ie alvast toegevoegd aan de list.
             unvisited.Add(startPoint);
             foreach (Point p in pointList.points)
             {
-                //The logic here is empty because there is not yet anything to do with only and endpoint or only a starting point
                 if (p == startPoint)
                 {
-
+                    // Doe niks als het de startPoint is
                 }
                 else if (p == endPoint)
                 {
-
+                    // Idem met de endpoint
                 }
                 else
                 {
@@ -30,7 +30,7 @@ namespace Models{
                 }
             }
 
-            //Gives the highest cost to the last point, so that it comes at the end of the route
+            // Hier wordt de endPoint aan het eind van de list toegevoegd, zodat het als laatste wordt berekend.
             endPoint.SetCost(decimal.MaxValue);
             unvisited.Add(endPoint);
 
@@ -48,6 +48,8 @@ namespace Models{
 
                 foreach (Point p in current.nodes)
                 {
+                    // Stelling van Pythagoras om de afstand te berekenen naar de buren van de current node ( niet nodig in onze simulatie omdat er geen diagonale
+                    // punten zijn, toch heb ik het toegevoegd).
                     double tempDistance = Math.Sqrt(Math.Pow(Convert.ToDouble((current.x - p.x)), 2) + Math.Pow(Convert.ToDouble((current.z - p.z)), 2));
                     decimal distance = Convert.ToDecimal(tempDistance);
                     if (distance + current.cost < p.cost)
@@ -74,6 +76,7 @@ namespace Models{
                 {
                     if (p == shortest)
                     {
+                        // De kortste unvisited point in de graph wordt als volgende berekend in de volgende iteratie van de foreach loop.
                         unvisited.Remove(p);
                         unvisited.Insert(0, p);
                     }

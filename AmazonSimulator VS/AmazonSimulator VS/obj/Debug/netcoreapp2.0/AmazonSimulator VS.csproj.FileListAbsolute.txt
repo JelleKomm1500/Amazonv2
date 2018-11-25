@@ -53,4 +53,3 @@ C:\Users\Redmer\Documents\GitHub\Amazonv2\AmazonSimulator VS\AmazonSimulator VS\
 C:\Users\Redmer\Documents\GitHub\Amazonv2\AmazonSimulator VS\AmazonSimulator VS\obj\Debug\netcoreapp2.0\AmazonSimulator VS.AssemblyInfo.cs
 C:\Users\Redmer\Documents\GitHub\Amazonv2\AmazonSimulator VS\AmazonSimulator VS\obj\Debug\netcoreapp2.0\AmazonSimulator VS.dll
 C:\Users\Redmer\Documents\GitHub\Amazonv2\AmazonSimulator VS\AmazonSimulator VS\obj\Debug\netcoreapp2.0\AmazonSimulator VS.pdb
-C:\Users\Redmer\Documents\GitHub\Amazonv2\AmazonSimulator VS\AmazonSimulator VS\bin\Debug\netcoreapp2.0\AmazonSimulator VS.xml

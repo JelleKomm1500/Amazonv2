@@ -12,12 +12,9 @@ namespace Models
         private Graph pointGraph;
         private Graph boatGraph;
 
-        /// <summary>
-        /// Constructor for the main World method, where all the objects get added
-        /// </summary>
+        // locations for the boat, robots and packages
         public World()
         {
-            //All the points, nodes and lists combined to make a graph used for the dijkstra algorithm
             Point a = new Point(-20, 0, 0);
             Point b = new Point(-10, 0, 0);
             Point c = new Point(-10, 0, 10);
@@ -45,10 +42,9 @@ namespace Models
 
             List<Point> pointList = new List<Point>() { a, b, c, d, e, f, g, h, i, j };
             pointGraph = new Graph((pointList));
-            boatGraph = new Graph(new List<Point>() { tA, tB, tC });
-            //Dijkstra part ends here
 
-            //Creating the robots, lighthouse, barrels and the boat
+            boatGraph = new Graph(new List<Point>() { tA, tB, tC });
+
             Robot robot1 = CreateRobot(a);
             Robot robot2 = CreateRobot(a);
             Robot robot3 = CreateRobot(a);
@@ -57,22 +53,21 @@ namespace Models
 
             Barrels barrels1 = CreateBarrels(c);
 
-            Barrels barrel1 = CreateBarrel(e);
-            Barrels barrel2 = CreateBarrel(i);
-            Barrels barrel3 = CreateBarrel(j);
-            Barrels barrel4 = CreateBarrel(g);
-            Barrels barrel5 = CreateBarrel(b);
-            Barrels barrel6 = CreateBarrel(c);
+            Barrels chest1 = CreateChest(e);
+            Barrels chest2 = CreateChest(i);
+            Barrels chest3 = CreateChest(j);
+            Barrels chest4 = CreateChest(g);
+            Barrels chest5 = CreateChest(b);
+            Barrels chest6 = CreateChest(c);
 
             Boat t = CreateBoat(tA);
 
-
-            robot1.AddTask(new RobotMove(pointGraph, barrel1.point));
-            robot2.AddTask(new RobotMove(pointGraph, barrel2.point));
-            robot3.AddTask(new RobotMove(pointGraph, barrel3.point));
-            robot1.AddTask(new RobotMove(pointGraph, barrel4.point));
-            robot2.AddTask(new RobotMove(pointGraph, barrel5.point));
-            robot3.AddTask(new RobotMove(pointGraph, barrel6.point));
+            robot1.AddTask(new RobotMove(pointGraph, chest1.point));
+            robot2.AddTask(new RobotMove(pointGraph, chest2.point));
+            robot3.AddTask(new RobotMove(pointGraph, chest3.point));
+            robot1.AddTask(new RobotMove(pointGraph, chest4.point));
+            robot2.AddTask(new RobotMove(pointGraph, chest5.point));
+            robot3.AddTask(new RobotMove(pointGraph, chest6.point));
 
             int counter = 3;
 
@@ -100,12 +95,7 @@ namespace Models
             t.AddTask(new BoatMove(tC));
         }
 
-        /// <summary>
-        /// The following methods are used to add the objects to the world
-        /// </summary>
-        /// <param name="p"></param>
-        /// <returns></returns>
-
+        //Zet een robot op een punt neer
         private Robot CreateRobot(Point p)
         {
             Robot r = new Robot(p);
@@ -128,14 +118,14 @@ namespace Models
             return l;
         }
 
-        private Barrels CreateBarrel(decimal x, decimal y, decimal z)
+        private Barrels CreateChest(decimal x, decimal y, decimal z)
         {
             Barrels r = new Barrels(x, y, z, 0, 0, 0);
             worldObjects.Add(r);
             return r;
         }
 
-        private Barrels CreateBarrel (Point p)
+        private Barrels CreateChest(Point p)
         {
             Barrels r = new Barrels(p);
             worldObjects.Add(r);
@@ -149,11 +139,6 @@ namespace Models
             return r;
         }
 
-        /// <summary>
-        /// Default code that was already here, used for internal communication between the observer and the application itself
-        /// </summary>
-        /// <param name="observer"></param>
-        /// <returns></returns>
         public IDisposable Subscribe(IObserver<Command> observer)
         {
             if (!observers.Contains(observer))
@@ -181,11 +166,6 @@ namespace Models
             }
         }
 
-        /// <summary>
-        /// MEthod that makes the game update 50 times per second
-        /// </summary>
-        /// <param name="tick"></param>
-        /// <returns></returns>
         public bool Update(int tick)
         {
             for (int i = 0; i < worldObjects.Count; i++)

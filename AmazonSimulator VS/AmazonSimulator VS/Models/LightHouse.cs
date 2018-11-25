@@ -14,15 +14,6 @@ namespace Models
 
         public bool loadable { get { return _loadable; } }
 
-        /// <summary>
-        /// Constructor for the Lighthouse 
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="z"></param>
-        /// <param name="rotationX"></param>
-        /// <param name="rotationY"></param>
-        /// <param name="rotationZ"></param>
         public LightHouse(decimal x, decimal y, decimal z, decimal rotationX, decimal rotationY, decimal rotationZ)
         {
             this.type = "lighthouse";
@@ -40,10 +31,6 @@ namespace Models
             this._loadable = false;
         }
 
-        /// <summary>
-        /// Constructor for the Lighthouse to add it to a point
-        /// </summary>
-        /// <param name="point"></param>
         public LightHouse(Point point)
         {
             this.type = "lighthouse";
