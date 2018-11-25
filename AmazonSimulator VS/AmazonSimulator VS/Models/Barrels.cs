@@ -10,6 +10,15 @@ namespace Models
         private Point _point;
         public Point point { get { return _point; } }
 
+        /// <summary>
+        /// Test comments
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <param name="rotationX"></param>
+        /// <param name="rotationY"></param>
+        /// <param name="rotationZ"></param>
         public Barrels(decimal x, decimal y, decimal z, decimal rotationX, decimal rotationY, decimal rotationZ)
         {
             this.type = "barrels";
