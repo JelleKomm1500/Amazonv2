@@ -1,7 +1,4 @@
-﻿/**
- * Makes the javascript connect with c# server code
- */
-function parseCommand(input = "") {
+﻿function parseCommand(input = "") {
     return JSON.parse(input);
 }
 

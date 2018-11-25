@@ -1,8 +1,5 @@
-/**
- * Creates a skybox, by making a THREE box geometry, the size of the x,y,z are set to 1000
- * @returns {THREE.Mesh} returns the skybox, which is placed in the scene in the CameraAnimateScene file
- */
-function skybox(){
+//Adds skybox
+function Skybox(){
     var skyboxGeometry = new THREE.BoxGeometry( 1000, 1000, 1000);
     var skyboxMaterials = [
         new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("textures/Skybox/Left.png"), side: THREE.DoubleSide}),
